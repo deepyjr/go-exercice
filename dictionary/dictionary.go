@@ -11,7 +11,7 @@ type Entry struct {
 }
 
 func (e Entry) String() string {
-	return e.Definition + " (added on " + e.Date.String() + ")"
+	return e.Definition + " (added on " + e.Date.Format("2 Jan 2006 15:04") + ")"
 }
 
 type Dictionary struct {
