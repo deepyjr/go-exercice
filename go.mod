@@ -13,6 +13,7 @@ require (
 	github.com/looplab/fsm v0.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
+	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/pkg/profile v1.3.0 // indirect
 	github.com/st0012/metago v0.0.0-20170803060228-9a814882b21a // indirect
 	golang.org/x/sys v0.0.0-20191029155521-f43be2a4598c // indirect

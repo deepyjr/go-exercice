@@ -62,12 +62,15 @@ func actionRemove(d *dictionary.Dictionary, reader *bufio.Reader) {
 }
 
 func actionList(d *dictionary.Dictionary) {
-	words, entries := d.List()
+	words, entries, err := d.List()
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
 	for _, word := range words {
 		fmt.Println(word, ":", entries[word].String())
 	}
 }
-
 func runMode(mode string, d *dictionary.Dictionary, reader *bufio.Reader) {
 	for {
 		fmt.Println("\nChoose an action [add/define/remove/list/exit]:")
