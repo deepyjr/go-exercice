@@ -71,6 +71,7 @@ func actionList(d *dictionary.Dictionary) {
 		fmt.Println(word, ":", entries[word].String())
 	}
 }
+
 func runMode(mode string, d *dictionary.Dictionary, reader *bufio.Reader) {
 	for {
 		fmt.Println("\nChoose an action [add/define/remove/list/exit]:")
@@ -117,6 +118,18 @@ func runGobyServer(d *dictionary.Dictionary, stopServer chan bool) {
 		d.Add(word, definition)
 		fmt.Fprint(w, "Added.")
 	}).Methods("POST")
+
+	r.HandleFunc("/list", func(w http.ResponseWriter, r *http.Request) {
+		words, entries, err := d.List()
+		if err != nil {
+			http.Error(w, "Unable to retrieve words", http.StatusInternalServerError)
+			return
+		}
+
+		for _, word := range words {
+			fmt.Fprintf(w, "%s : %s\n", word, entries[word].String())
+		}
+	}).Methods("GET")
 
 	srv := &http.Server{
 		Handler: r,
